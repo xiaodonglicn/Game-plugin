@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>屁打BOSS闯关游戏</title>
+    <style>
+        body { margin: 0; overflow: hidden; background: #222; }
+        canvas { display: block; margin: auto; background: #444; }
+    </style>
+</head>
+<body>
+<canvas id="gameCanvas" width="800" height="600"></canvas>
+
+<script>
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+
+const KEY = {
+    LEFT: false,
+    RIGHT: false,
+    UP: false,
+    DOWN: false,
+    SPACE: false
+};
+
+document.addEventListener('keydown', e => {
+    if (e.code === 'ArrowLeft' || e.code === 'KeyA') KEY.LEFT = true;
+    if (e.code === 'ArrowRight' || e.code === 'KeyD') KEY.RIGHT = true;
+    if (e.code === 'ArrowUp' || e.code === 'KeyW') KEY.UP = true;
+    if (e.code === 'ArrowDown' || e.code === 'KeyS') KEY.DOWN = true;
+    if (e.code === 'Space') KEY.SPACE = true;
+});
+
+document.addEventListener('keyup', e => {
+    if (e.code === 'ArrowLeft' || e.code === 'KeyA') KEY.LEFT = false;
+    if (e.code === 'ArrowRight' || e.code === 'KeyD') KEY.RIGHT = false;
+    if (e.code === 'ArrowUp' || e.code === 'KeyW') KEY.UP = false;
+    if (e.code === 'ArrowDown' || e.code === 'KeyS') KEY.DOWN = false;
+    if (e.code === 'Space') KEY.SPACE = false;
+});
+
+// 玩家对象
+const player = {
+    x: 100,
+    y: 100,
+    size: 30,
+    speed: 4,
+    direction: 'right',
+    color: '#0f0'
+};
+
+// 子弹列表
+let farts = [];
+
+// 敌人列表
+let enemies = [];
+
+// BOSS 对象
+let boss = null;
+
+// 当前关卡
+let level = 1;
+const maxLevel = 3;
+
+function spawnEnemies() {
+    enemies = [];
+    for (let i = 0; i < 5 + level * 2; i++) {
+        enemies.push({
+            x: Math.random() * 700 + 50,
+            y: Math.random() * 500 + 50,
+            size: 30,
+            alive: true
+        });
+    }
+}
+
+function spawnBoss() {
+    boss = {
+        x: 600,
+        y: 250,
+        sizeX: 80,
+        sizeY: 100,
+        hp: level * 10,
+        alive: true
+    };
+}
+
+function resetPlayer() {
+    player.x = 100;
+    player.y = 100;
+}
+
+function drawPlayer() {
+    ctx.fillStyle = player.color;
+    ctx.fillRect(player.x, player.y, player.size, player.size);
+}
+
+function drawFarts() {
+    ctx.fillStyle = 'yellow';
+    farts.forEach(f => {
+        ctx.fillRect(f.x, f.y, 10, 10);
+    });
+}
+
+function drawEnemies() {
+    ctx.fillStyle = 'red';
+    enemies.forEach(e => {
+        if (e.alive) {
+            ctx.fillRect(e.x, e.y, e.size, e.size);
+        }
+    });
+}
+
+function drawBoss() {
+    if (!boss || !boss.alive) return;
+    ctx.fillStyle = 'purple';
+    ctx.fillRect(boss.x, boss.y, boss.sizeX, boss.sizeY);
+
+    // 血条
+    ctx.fillStyle = 'black';
+    ctx.fillRect(boss.x, boss.y - 10, boss.sizeX, 5);
+    ctx.fillStyle = 'lime';
+    const percent = boss.hp / (level * 10);
+    ctx.fillRect(boss.x, boss.y - 10, boss.sizeX * percent, 5);
+}
+
+function movePlayer() {
+    if (KEY.LEFT) {
+        player.x -= player.speed;
+        player.direction = 'left';
+    }
+    if (KEY.RIGHT) {
+        player.x += player.speed;
+        player.direction = 'right';
+    }
+    if (KEY.UP) player.y -= player.speed;
+    if (KEY.DOWN) player.y += player.speed;
+
+    // 边界限制
+    player.x = Math.max(0, Math.min(canvas.width - player.size, player.x));
+    player.y = Math.max(0, Math.min(canvas.height - player.size, player.y));
+}
+
+function shootFart() {
+    if (KEY.SPACE && !player.cooldown) {
+        farts.push({
+            x: player.x + player.size / 2,
+            y: player.y + player.size / 2,
+            dx: player.direction === 'right' ? 6 : -6,
+            dy: 0
+        });
+        player.cooldown = true;
+        setTimeout(() => player.cooldown = false, 300);
+    }
+}
+
+function updateFarts() {
+    farts.forEach((f, i) => {
+        f.x += f.dx;
+        f.y += f.dy;
+
+        // 移除出界子弹
+        if (f.x < 0 || f.x > canvas.width) {
+            farts.splice(i, 1);
+        }
+
+        // 检测碰撞敌人
+        enemies.forEach(e => {
+            if (e.alive &&
+                f.x >= e.x && f.x <= e.x + e.size &&
+                f.y >= e.y && f.y <= e.y + e.size) {
+                e.alive = false;
+                farts.splice(i, 1);
+            }
+        });
+
+        // 检测碰撞BOSS
+        if (boss && boss.alive &&
+            f.x >= boss.x && f.x <= boss.x + boss.sizeX &&
+            f.y >= boss.y && f.y <= boss.y + boss.sizeY) {
+            boss.hp--;
+            if (boss.hp <= 0) {
+                boss.alive = false;
+            }
+            farts.splice(i, 1);
+        }
+    });
+}
+
+function checkWinCondition() {
+    if (enemies.every(e => !e.alive) && boss && !boss.alive) {
+        level++;
+        if (level > maxLevel) {
+            alert("🎉 你赢了！");
+            location.reload();
+        } else {
+            alert(`✅ 进入第 ${level} 关`);
+            resetPlayer();
+            spawnEnemies();
+            spawnBoss();
+        }
+    }
+}
+
+function gameLoop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    movePlayer();
+    shootFart();
+    updateFarts();
+
+    drawPlayer();
+    drawFarts();
+    drawEnemies();
+    drawBoss();
+
+    checkWinCondition();
+
+    requestAnimationFrame(gameLoop);
+}
+
+// 初始化第一关
+spawnEnemies();
+spawnBoss();
+gameLoop();
+</script>
+</body>
+</html>

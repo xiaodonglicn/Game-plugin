@@ -1,0 +1,16 @@
+<idea-plugin>
+    <id>com.example.brick-breaker-game</id>
+    <name>Brick Breaker Game</name>
+    <version>1.0</version>
+    <vendor>YourName</vendor>
+
+    <description>
+        A simple Brick Breaker game embedded in IntelliJ IDEA's right-side tool window.
+    </description>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow id="BrickBreakerGame" anchor="right" factoryClass="com.lxd.tool.GameToolWindowFactory"/>
+    </extensions>
+</idea-plugin>

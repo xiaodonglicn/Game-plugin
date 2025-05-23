@@ -1,8 +1,8 @@
 <idea-plugin>
-    <id>com.example.brick-breaker-game</id>
+    <id>com.lxd.brick-breaker-game</id>
     <name>BrickBreakerGame</name>
     <version>1.0</version>
-    <vendor email="xiaodonglicn@outlook.com" url="https://github.com/xiaodonglicn/webView">xiaodong</vendor>
+    <vendor email="xiaodonglicn@outlook.com" url="https://github.com/xiaodonglicn/Game-plugin">xiaodong</vendor>
 
     <depends>com.intellij.modules.platform</depends>
 

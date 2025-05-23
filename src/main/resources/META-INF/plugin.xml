@@ -1,16 +1,38 @@
 <idea-plugin>
     <id>com.example.brick-breaker-game</id>
-    <name>Brick Breaker Game</name>
+    <name>BrickBreakerGame</name>
     <version>1.0</version>
-    <vendor>YourName</vendor>
-
-    <description>
-        A simple Brick Breaker game embedded in IntelliJ IDEA's right-side tool window.
-    </description>
+    <vendor email="xiaodonglicn@outlook.com" url="https://github.com/xiaodonglicn/webView">xiaodong</vendor>
 
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow id="BrickBreakerGame" anchor="right" factoryClass="com.lxd.tool.GameToolWindowFactory"/>
+        <toolWindow id="BrickBreakerGame" anchor="right" icon="AllIcons.Ide.Gift"
+                    factoryClass="com.lxd.tool.GameToolWindowFactory"/>
     </extensions>
+
+    <description><![CDATA[
+        This is a casual brick-breaking mini-game that can help you relax after work <br><br>
+
+        这是一个打砖块的休闲小游戏，能让你在工作之余放松一下 <br><br>
+
+
+        If you would like to engage in deeper technical discussions, feel free to contact me:<br>
+        - Email: xiaodonglicn@outlook.com<br>
+        - LinkedIn: linkedin.com/in/xiaodonglicn<br>
+        - WeChat: X_X__88888888<br><br>
+
+        如果你想进行更深层次的技术交流，请联系我：<br>
+        - 邮箱：xiaodonglicn@outlook.com<br>
+        - 领英：linkedin.com/in/xiaodonglicn<br>
+        - 微信：X_X__88888888<br>
+
+    ]]></description>
+
+    <!-- Change Notes -->
+    <change-notes><![CDATA[
+        - Initial release<br>
+        - Logo optimization<br>
+        - Version compatibility
+    ]]></change-notes>
 </idea-plugin>

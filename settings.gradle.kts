@@ -1,1 +1,1 @@
-rootProject.name = "weChatTool"
+rootProject.name = "BrickBreakerGame"

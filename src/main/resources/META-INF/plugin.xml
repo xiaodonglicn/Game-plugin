@@ -24,13 +24,27 @@
 
     <description><![CDATA[
         This is a casual brick-breaking mini-game that can help you relax after work.
-        After installation, a new TAB will appear in the right toolbar and the Tools menu. Click to open it and you can start the game. You can control the moving pad using both the keyboard arrow keys and the mouse<br><br>
-        as shown in the figure：<br>
+        After installation, a new TAB will appear in the right toolbar and the Tools menu. Click to open it and you can start the game. You can control the moving pad using both the keyboard arrow keys and the mouse<br>
+        as shown in the figure：<br><br>
 
-        这是一个打砖块的休闲小游戏，能让你在工作之余放松一下，安装完后在右侧工具栏和Tools菜单中会出现一个新的选项卡，点击打开就可以开始游戏了，使用键盘方向键和鼠标都可以控制移动板<br><br>
-        如下图：<br>
+        这是一个打砖块的休闲小游戏，能让你在工作之余放松一下，安装完后在右侧工具栏和Tools菜单中会出现一个新的选项卡，点击打开就可以开始游戏了，使用键盘方向键和鼠标都可以控制移动板<br>
+        如下图：<br><br>
 
         <img src="https://plugins.jetbrains.com/files/27450/screenshot_e80de283-8965-4e48-9e1f-6b026a657955" alt="Plug-in installation complete diagram（插件安装完成示意图）" width="400"><br>
+
+        <p>
+            Recommend a productivity tool:
+        </p>
+        <ul>
+            <li><a href="https://plugins.jetbrains.com/plugin/26826-webview">WebView</a></li>
+        </ul>
+
+        <p>
+            推荐一款生产力工具:
+        </p>
+        <ul>
+            <li><a href="https://plugins.jetbrains.com/plugin/26826-webview/edit">WebView</a></li>
+        </ul>
 
         If you would like to engage in deeper technical discussions, feel free to contact me:<br>
         - Email: xiaodonglicn@outlook.com<br>
@@ -40,7 +54,9 @@
         如果你想进行更深层次的技术交流，请联系我：<br>
         - 邮箱：xiaodonglicn@outlook.com<br>
         - 领英：linkedin.com/in/xiaodonglicn<br>
-        - 微信：X_X__88888888<br>
+        - 微信：X_X__88888888<br><br>
+
+
 
     ]]></description>
 

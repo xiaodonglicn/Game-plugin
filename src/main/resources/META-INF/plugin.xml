@@ -6,19 +6,31 @@
 
     <depends>com.intellij.modules.platform</depends>
 
+    <!-- Actions -->
+    <actions>
+        <action id="com.lxd.tool.OpenBrickBreakerAction"
+                icon="AllIcons.Ide.Gift"
+                class="com.lxd.tool.OpenBrickBreakerAction"
+                text="Open BrickBreaker"
+                description="Start a BrickBreakerGame">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+    </actions>
+
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow id="BrickBreakerGame" anchor="right" icon="AllIcons.Ide.Gift"
                     factoryClass="com.lxd.tool.GameToolWindowFactory"/>
     </extensions>
 
     <description><![CDATA[
-        This is a casual brick-breaking mini-game that can help you relax after work <br><br>
-        as shown in the figure：<br><br>
+        This is a casual brick-breaking mini-game that can help you relax after work.
+        After installation, a new TAB will appear in the right toolbar and the Tools menu. Click to open it and you can start the game. You can control the moving pad using both the keyboard arrow keys and the mouse<br><br>
+        as shown in the figure：<br>
 
-        这是一个打砖块的休闲小游戏，能让你在工作之余放松一下 <br><br>
-        如下图：<br><br>
+        这是一个打砖块的休闲小游戏，能让你在工作之余放松一下，安装完后在右侧工具栏和Tools菜单中会出现一个新的选项卡，点击打开就可以开始游戏了，使用键盘方向键和鼠标都可以控制移动板<br><br>
+        如下图：<br>
 
-        <img src="https://plugins.jetbrains.com/files/27450/screenshot_ba46a1a2-542e-4b4a-9658-c311eefac017" alt="Plug-in installation complete diagram（插件安装完成示意图）" width="400"><br>
+        <img src="https://plugins.jetbrains.com/files/27450/screenshot_e80de283-8965-4e48-9e1f-6b026a657955" alt="Plug-in installation complete diagram（插件安装完成示意图）" width="400"><br>
 
         If you would like to engage in deeper technical discussions, feel free to contact me:<br>
         - Email: xiaodonglicn@outlook.com<br>

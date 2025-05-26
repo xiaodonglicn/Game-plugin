@@ -36,7 +36,7 @@ public class BrickBreakerGame extends JPanel implements ActionListener, KeyListe
         addComponentListener(this); // 监听窗口大小变化
 
         // 初始化开始游戏按钮
-        startButton = new JButton("开始游戏");
+        startButton = new JButton("Start Game");
         startButton.setBackground(new Color(50, 50, 50)); // 暗色按钮背景
         startButton.setForeground(Color.WHITE); // 白色文字
         startButton.setFocusable(false);
@@ -46,7 +46,7 @@ public class BrickBreakerGame extends JPanel implements ActionListener, KeyListe
         add(startButton);
 
         // 初始化重新游戏按钮
-        restartButton = new JButton("重新游戏");
+        restartButton = new JButton("Restart Game");
         restartButton.setBackground(new Color(50, 50, 50)); // 暗色按钮背景
         restartButton.setForeground(Color.WHITE); // 白色文字
         restartButton.setFocusable(false);
@@ -110,14 +110,14 @@ public class BrickBreakerGame extends JPanel implements ActionListener, KeyListe
 
         // 绘制得分和关卡
         g.setColor(Color.WHITE);
-        g.drawString("得分: " + score, 10, 20);
-        g.drawString("关卡: " + currentLevel, width - 100, 20);
+        g.drawString("Score: " + score, 10, 20);
+        g.drawString("Level: " + currentLevel, width - 100, 20);
 
         // 游戏结束提示
         if (gameOver) {
             g.setColor(Color.RED);
             g.setFont(new Font("Arial", Font.BOLD, 30));
-            g.drawString("游戏结束!", width / 2 - 80, height / 2);
+            g.drawString("Game Over!", width / 2 - 80, height / 2);
             restartButton.setBounds(width / 2 - 50, height / 2 + 50, 100, 30);
             restartButton.setVisible(true); // 显示重新游戏按钮
         }
@@ -126,7 +126,7 @@ public class BrickBreakerGame extends JPanel implements ActionListener, KeyListe
         if (gameWon) {
             g.setColor(Color.GREEN);
             g.setFont(new Font("Arial", Font.BOLD, 30));
-            g.drawString("你赢了!", width / 2 - 60, height / 2);
+            g.drawString("You win!", width / 2 - 60, height / 2);
             restartButton.setBounds(width / 2 - 50, height / 2 + 50, 100, 30);
             restartButton.setVisible(true); // 显示重新游戏按钮
         }
